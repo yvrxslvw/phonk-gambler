@@ -1,0 +1,11 @@
+# Build output
+/dist
+
+# Packages
+/node_modules
+
+# Environment file
+.env.development
+
+# Log files
+yarn-error.log

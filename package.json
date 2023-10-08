@@ -1,0 +1,28 @@
+{
+	"name": "phonk-gambler",
+	"version": "2.0.0",
+	"description": "Blackjack game bot for Discord",
+	"scripts": {
+		"start": "tsc && cross-env APP_MODE=production node ./dist/index",
+		"dev": "tsc && cross-env APP_MODE=development node ./dist/index"
+	},
+	"author": {
+		"name": "yvrxslvw",
+		"email": "yvrxslvv@gmail.com",
+		"url": "http://github.com/yvrxslvw"
+	},
+	"license": "MIT",
+	"private": true,
+	"repository": {
+		"url": "https://github.com/yvrxslvw/phonk-gambler"
+	},
+	"dependencies": {
+		"@discordjs/rest": "^2.0.1",
+		"discord.js": "^14.13.0"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.3.1",
+		"nodemon": "^3.0.1"
+	}
+}

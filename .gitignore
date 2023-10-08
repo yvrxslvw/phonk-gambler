@@ -9,3 +9,6 @@
 
 # Log files
 yarn-error.log
+
+# Database dump
+phonkgambler.sql

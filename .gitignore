@@ -1,8 +1,8 @@
 # Build output
-/dist
+dist/
 
 # Packages
-/node_modules
+node_modules/
 
 # Environment file
 .env.development
@@ -12,3 +12,6 @@ yarn-error.log
 
 # Database dump
 phonkgambler.sql
+
+# VSCode settings folder
+.vscode/

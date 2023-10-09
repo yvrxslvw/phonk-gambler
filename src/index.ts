@@ -1,9 +1,14 @@
-import { Client, GatewayIntentBits } from 'discord.js';
-import { BOT_DATA } from './constants';
+import './config';
+import './events';
+
+import { BOT_DATA } from './shared';
+import { client } from './config';
 
 const bootstrap = async () => {
-	const client = new Client({ intents: GatewayIntentBits.MessageContent });
-	await client.login(BOT_DATA.TOKEN);
-	client.on('ready', () => console.log(`${client.user?.tag} has been logged.`));
+	try {
+		await client.login(BOT_DATA.TOKEN);
+	} catch (error) {
+		console.error(error);
+	}
 };
 bootstrap();

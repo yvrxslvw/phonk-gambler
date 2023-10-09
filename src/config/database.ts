@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 import { MYSQL_DATA } from '../shared';
-import { greenBright } from 'colorette';
+import { blueBright, greenBright } from 'colorette';
 
 const sql = new Sequelize({
 	dialect: 'mysql',
@@ -15,7 +15,7 @@ const sql = new Sequelize({
 export const loginDatabase = async () => {
 	try {
 		await sql.authenticate();
-		console.log(greenBright(`Successful connection to the database ${MYSQL_DATA.DATABASE}.`));
+		console.log(greenBright(`Successful connection to the database ${blueBright(MYSQL_DATA.DATABASE!)}.`));
 	} catch (error) {
 		throw error;
 	}

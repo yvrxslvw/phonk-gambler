@@ -1,1 +1,1 @@
-import './onReady';
+export {};

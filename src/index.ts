@@ -1,13 +1,14 @@
 import './config';
 import './events';
-
-import { BOT_DATA } from './shared';
-import { client } from './config';
+import { loginClient, loginDatabase } from './config';
+import { redBright } from 'colorette';
 
 const bootstrap = async () => {
 	try {
-		await client.login(BOT_DATA.TOKEN);
+		await loginDatabase();
+		await loginClient();
 	} catch (error) {
+		console.error(redBright('The application has not been started.'));
 		console.error(error);
 	}
 };

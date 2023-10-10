@@ -1,4 +1,4 @@
-import { GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 
 export const BOT_DATA = {
 	TOKEN: process.env.APP_TOKEN!,
@@ -6,3 +6,5 @@ export const BOT_DATA = {
 	SERVER: process.env.SERVER_ID!,
 	INTENTS: [GatewayIntentBits.MessageContent]!,
 };
+
+export const client = new Client({ intents: BOT_DATA.INTENTS });

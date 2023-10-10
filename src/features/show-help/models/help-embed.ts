@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
-import { APP_VERSION } from '../../shared';
+import { APP_VERSION } from '../../../shared';
 
-export const help = new EmbedBuilder({
+export const helpEmbed = new EmbedBuilder({
 	author: {
 		name: `Author: yvrxslvw. v${APP_VERSION}`,
 		url: 'https://t.me/yvrxslw',

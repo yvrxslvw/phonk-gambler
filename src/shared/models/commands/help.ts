@@ -1,4 +1,4 @@
-import { ICommand } from '../../shared';
+import { ICommand } from './ICommand';
 
 export const HelpCommand: ICommand = {
 	name: 'help',

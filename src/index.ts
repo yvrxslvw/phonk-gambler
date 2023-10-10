@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: process.env.APP_MODE === 'development' ? '.env.development' : '.env' });
+import './config/dotenv';
 import { loginClient, loginDatabase } from './config';
 import { redBright } from 'colorette';
 

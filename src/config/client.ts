@@ -1,4 +1,4 @@
-import { Client, Routes } from 'discord.js';
+import { Client } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import { BOT_DATA } from '../shared';
 import { blueBright, greenBright } from 'colorette';

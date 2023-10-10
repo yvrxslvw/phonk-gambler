@@ -8,8 +8,8 @@ const bootstrap = async () => {
 		await loginDatabase();
 		await loginClient();
 	} catch (error) {
-		console.error(redBright('The application has not been started.'));
 		console.error(error);
+		console.error(redBright('The application has not been started.'));
 	}
 };
 bootstrap();

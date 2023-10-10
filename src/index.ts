@@ -1,5 +1,5 @@
-import './config';
-import './events';
+import dotenv from 'dotenv';
+dotenv.config({ path: process.env.APP_MODE === 'development' ? '.env.development' : '.env' });
 import { loginClient, loginDatabase } from './config';
 import { redBright } from 'colorette';
 

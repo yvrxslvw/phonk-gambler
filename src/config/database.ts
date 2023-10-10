@@ -15,7 +15,7 @@ const sql = new Sequelize({
 export const loginDatabase = async () => {
 	try {
 		await sql.authenticate();
-		console.log(greenBright(`Successful connection to the database ${blueBright(MYSQL_DATA.DATABASE!)}.`));
+		console.log(greenBright(`Successful connection to the database ${blueBright(MYSQL_DATA.DATABASE)}.`));
 	} catch (error) {
 		throw error;
 	}

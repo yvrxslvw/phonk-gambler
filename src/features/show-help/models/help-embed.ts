@@ -1,5 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
-import { APP_VERSION } from '../../../shared';
+import jetpack from 'fs-jetpack';
+
+const pkg = jetpack.read('package.json', 'json');
+const APP_VERSION = pkg.version;
 
 export const helpEmbed = new EmbedBuilder({
 	author: {

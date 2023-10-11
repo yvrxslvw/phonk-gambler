@@ -1,5 +1,5 @@
+import { client } from '../config';
 import { showHelp, showPong } from '../features';
-import { client } from '../shared';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;

@@ -1,3 +1,8 @@
-import './config';
+import { client, sql } from './config';
 import './events';
-import './app';
+
+const bootstrap = async () => {
+	await sql.login();
+	await client.loginClient();
+};
+bootstrap();

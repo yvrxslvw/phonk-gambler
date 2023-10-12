@@ -1,5 +1,5 @@
 import { client } from '../config';
-import { showHelp, showPong, showRules } from '../features';
+import { showCards, showHelp, showPong, showRules } from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -14,6 +14,9 @@ client.on('interactionCreate', async interaction => {
 			break;
 		case 'rules':
 			await interaction.reply(showRules());
+			break;
+		case 'cards':
+			await interaction.reply(showCards());
 			break;
 	}
 });

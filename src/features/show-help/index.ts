@@ -1,2 +1,9 @@
-export * from './ui';
-export * from './command';
+export * from './commands';
+import { InteractionReplyOptions } from 'discord.js';
+import { helpEmbed } from './models';
+
+const embeds = [helpEmbed];
+
+export const showHelp = (): InteractionReplyOptions => {
+	return { embeds, ephemeral: true };
+};

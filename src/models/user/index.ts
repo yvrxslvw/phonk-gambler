@@ -24,14 +24,17 @@ User.init(
 		wins: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
+			allowNull: false,
 		},
 		loses: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
+			allowNull: false,
 		},
 		blackjacks: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
+			allowNull: false,
 		},
 	},
 	{ sequelize: sql, updatedAt: false, modelName: 'User' },

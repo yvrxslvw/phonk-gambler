@@ -3,3 +3,4 @@ export * from './help';
 export * from './rules';
 export * from './cards';
 export * from './error';
+export * from './stats';

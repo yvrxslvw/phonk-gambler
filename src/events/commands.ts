@@ -1,5 +1,5 @@
-import { client } from '../config';
-import { showCards, showHelp, showPong, showRules } from '../features';
+import { client } from '../domain';
+import { cardsFeature, helpFeature, pingFeature, rulesFeature } from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -7,16 +7,16 @@ client.on('interactionCreate', async interaction => {
 
 	switch (cmd) {
 		case 'ping':
-			await interaction.reply(showPong());
+			await pingFeature(interaction);
 			break;
 		case 'help':
-			await interaction.reply(showHelp());
+			await helpFeature(interaction);
 			break;
 		case 'rules':
-			await interaction.reply(showRules());
+			await rulesFeature(interaction);
 			break;
 		case 'cards':
-			await interaction.reply(showCards());
+			await cardsFeature(interaction);
 			break;
 	}
 });

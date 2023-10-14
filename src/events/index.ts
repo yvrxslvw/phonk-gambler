@@ -1,1 +1,1 @@
-import './commands';
+export * from './commands';

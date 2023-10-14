@@ -1,6 +1,5 @@
-export * from './commands';
-export { showHelp } from './show-help';
-export { showPong } from './show-pong';
-export { showRules } from './show-rules';
-export { showCards } from './show-cards';
-export { showError } from './show-error';
+export * from './ping';
+export * from './help';
+export * from './rules';
+export * from './cards';
+export * from './error';

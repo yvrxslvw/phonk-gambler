@@ -1,3 +1,5 @@
+import { ApplicationCommandOptionType } from 'discord.js';
+
 interface OptionChoice {
 	name: string;
 	value: string;
@@ -6,7 +8,7 @@ interface OptionChoice {
 interface CommandOption {
 	name: string;
 	description: string;
-	type: number;
+	type: ApplicationCommandOptionType;
 	required: boolean;
 	choices?: OptionChoice[];
 }

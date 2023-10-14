@@ -1,5 +1,5 @@
 import { client } from '../domain';
-import { cardsFeature, helpFeature, pingFeature, rulesFeature, statsFeature } from '../features';
+import { cardsFeature, helpFeature, pingFeature, rulesFeature, statsFeature, topFeature } from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -20,6 +20,9 @@ client.on('interactionCreate', async interaction => {
 			break;
 		case 'stats':
 			await statsFeature(interaction);
+			break;
+		case 'top':
+			await topFeature(interaction);
 			break;
 	}
 });

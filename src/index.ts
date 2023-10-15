@@ -29,3 +29,5 @@ const bootstrap = async () => {
 	}
 };
 bootstrap();
+
+global.rooms = {};

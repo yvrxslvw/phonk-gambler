@@ -1,3 +1,3 @@
 export * from './command';
-export * from './embed';
+export * from './embeds';
 export * from './components';

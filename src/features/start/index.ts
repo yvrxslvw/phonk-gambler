@@ -3,6 +3,8 @@ import { ChatInputCommandInteraction } from 'discord.js';
 import { readyComponent, startEmbed } from './models';
 import { v4 as uuidv4 } from 'uuid';
 import { Player, Room } from '../../models';
+import { timer } from '../../helpers';
+import { notReadyEmbed } from './models/embeds/notReady';
 
 export const startFeature = async (interaction: ChatInputCommandInteraction) => {
 	try {
@@ -17,10 +19,17 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 
 		let content = '';
 		players.forEach(player => (content += `<@${player.user.id}> `));
-		const embeds = [startEmbed(author, players)];
-		const components = [readyComponent(roomId)];
+		await interaction.reply({ content, embeds: [startEmbed(author, players)], components: [readyComponent(roomId)] });
 
-		await interaction.reply({ content, embeds, components });
+		await timer(15 * 1000);
+		const notReadyPlayers: string[] = [];
+		players.forEach(player => !player.ready && notReadyPlayers.push(player.user.username));
+		if (notReadyPlayers.length > 0)
+			await interaction.editReply({
+				content: '',
+				components: [],
+				embeds: [notReadyEmbed(notReadyPlayers)],
+			});
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while starting the game.'));

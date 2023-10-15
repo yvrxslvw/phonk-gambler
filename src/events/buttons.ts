@@ -7,7 +7,7 @@ client.on('interactionCreate', async interaction => {
 	switch (buttonId) {
 		case 'gameReady':
 			await interaction.reply({ content: 'click event' });
-			console.log(global.rooms);
+			console.log(global.rooms[extraId]);
 			break;
 	}
 });

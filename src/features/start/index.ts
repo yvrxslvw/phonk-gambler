@@ -2,13 +2,13 @@ import { redBright } from 'colorette';
 import { ChatInputCommandInteraction } from 'discord.js';
 import { readyComponent, startEmbed } from './models';
 import { v4 as uuidv4 } from 'uuid';
-import { Room } from '../../models';
+import { Player, Room } from '../../models';
 
 export const startFeature = async (interaction: ChatInputCommandInteraction) => {
 	try {
 		const author = interaction.user;
-		const players = interaction.options.data.map(option => option.user!);
-		players.push(author);
+		const players = interaction.options.data.map(option => new Player(option.user!));
+		players.push(new Player(author));
 
 		// * Some features...
 
@@ -16,7 +16,7 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 		global.rooms[roomId] = new Room(players);
 
 		let content = '';
-		players.forEach(player => (content += `<@${player?.id}> `));
+		players.forEach(player => (content += `<@${player.user.id}> `));
 		const embeds = [startEmbed(author, players)];
 		const components = [readyComponent(roomId)];
 

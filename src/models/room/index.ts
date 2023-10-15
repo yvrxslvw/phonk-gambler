@@ -1,12 +1,12 @@
-import { User } from 'discord.js';
+import { Player } from '../player';
 
 export type RoomStatus = 'Preparing' | 'Game' | 'Finishing';
 
 export class Room {
-	public players: User[];
+	public players: Player[];
 	public status: RoomStatus = 'Preparing';
 
-	constructor(players: User[]) {
+	constructor(players: Player[]) {
 		this.players = players;
 	}
 }

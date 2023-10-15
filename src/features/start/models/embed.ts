@@ -1,8 +1,9 @@
 import { EmbedBuilder, User } from 'discord.js';
+import { Player } from '../../../models';
 
-export const startEmbed = (author: User, players: User[]) => {
+export const startEmbed = (author: User, players: Player[]) => {
 	let description = '**Участники:**\n';
-	players.forEach(player => (description += `*${player.username}*\n`));
+	players.forEach(player => (description += `*${player.user.username}*\n`));
 	description += '\n**Через 15 секунд начнется игра! Как будете готовы - нажмите на кнопку "Готов!".**';
 
 	return new EmbedBuilder({

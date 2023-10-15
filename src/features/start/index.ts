@@ -11,21 +11,25 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 	try {
 		const author = interaction.user;
 		const players: Record<string, Player> = {};
+		players[author.username] = new Player(author);
 		interaction.options.data.forEach(option => {
 			if (!option.user) return;
 			players[option.user.username] = new Player(option.user);
 		});
 
 		let error: string = '';
-		Object.values(players).forEach(player => {
+		Object.values(players).forEach((player, index) => {
 			if (player.user.bot) error = `Выбранный игрок ${player.user.username} - бот.`;
-			else if (player.user.username === author.username) error = 'Вы указали себя в параметрах запуска игры.';
+			Object.values(global.rooms).forEach(room =>
+				Object.keys(room.players).forEach(playerName => {
+					if (playerName === player.user.username) error = 'Некоторые игроки уже находятся в другой игре.';
+				}),
+			);
 		});
 		if (duplicates(Object.values(players).map(player => player.user.username)))
 			error = 'Игроки в параметрах запуска повторяются.';
 		if (error) return errorFeature(interaction, error);
 
-		players[author.username] = new Player(author);
 		const roomId = uuidv4();
 		global.rooms[roomId] = new Room(roomId, players);
 

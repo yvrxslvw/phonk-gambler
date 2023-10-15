@@ -1,5 +1,5 @@
 import { Room } from './models';
 
 declare global {
-	var rooms: Record<string, Room | undefined>;
+	var rooms: Record<string, Room>;
 }

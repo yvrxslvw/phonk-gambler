@@ -22,7 +22,7 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 
 		players.push(new Player(author));
 		const roomId = uuidv4();
-		global.rooms.push(new Room(roomId, players));
+		global.rooms[roomId] = new Room(roomId, players);
 
 		let content = '';
 		players.forEach(player => (content += `<@${player.user.id}> `));
@@ -37,10 +37,7 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 				components: [],
 				embeds: [notReadyEmbed(notReadyPlayers)],
 			});
-			global.rooms.splice(
-				global.rooms.findIndex(room => room.roomId === roomId),
-				1,
-			);
+			delete global.rooms[roomId];
 		}
 	} catch (error) {
 		console.error(error);

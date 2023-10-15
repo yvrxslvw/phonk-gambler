@@ -30,4 +30,4 @@ const bootstrap = async () => {
 };
 bootstrap();
 
-global.rooms = [];
+global.rooms = {};

@@ -13,13 +13,17 @@ export const gameEmbed = (roomId: string) => {
 	const dealerScore = room.status === 'Ход дилера' || dealer.score === 0 ? dealer.score : dealer.cards[0].getScore(false);
 
 	const playersFields: Field[] = players.map(player => ({
-		name: `**${player.user.username}** *(${player.score})*`,
+		name: `**${player.user.username}** *(${player.score})* ${player.status}`,
 		value: player.cards.map(card => card.getString()).join(' '),
 		inline: false,
 	}));
 
 	const fields: Field[] = [
-		{ name: `**Дилер** *(${dealerScore})*`, value: dealer.cards.map(card => card.getString()).join(' '), inline: false },
+		{
+			name: `**Дилер** *(${dealerScore})* ${dealer.status}`,
+			value: dealer.cards.map(card => card.getString()).join(' '),
+			inline: false,
+		},
 		...playersFields,
 	];
 

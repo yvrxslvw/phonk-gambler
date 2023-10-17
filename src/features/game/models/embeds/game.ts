@@ -7,20 +7,24 @@ interface Field {
 }
 
 export const gameEmbed = (roomId: string) => {
-	const players = Object.values(global.rooms[roomId].players);
-	const dealer = global.rooms[roomId].dealer;
+	const room = global.rooms[roomId];
+	const players = Object.values(room.players);
+	const dealer = room.dealer;
+	const dealerScore = room.status === 'Ход дилера' || dealer.score === 0 ? dealer.score : dealer.cards[0].getScore(false);
+
 	const playersFields: Field[] = players.map(player => ({
 		name: `**${player.user.username}** *(${player.score})*`,
 		value: player.cards.map(card => card.getString()).join(' '),
 		inline: false,
 	}));
+
 	const fields: Field[] = [
-		{ name: '**Дилер** *(0)*', value: dealer.cards.map(card => card.getString()).join(' '), inline: false },
+		{ name: `**Дилер** *(${dealerScore})*`, value: dealer.cards.map(card => card.getString()).join(' '), inline: false },
 		...playersFields,
 	];
 
 	return new EmbedBuilder({
-		title: global.rooms[roomId].status,
+		title: room.status,
 		fields,
 		footer: { text: 'Good luck, have fun.' },
 		timestamp: Date.now(),

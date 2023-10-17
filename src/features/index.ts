@@ -5,4 +5,4 @@ export * from './cards';
 export * from './error';
 export * from './stats';
 export * from './top';
-export * from './start';
+export * from './game';

@@ -6,3 +6,4 @@ export * from './renderInteraction';
 export * from './dealing';
 export * from './checkAccess';
 export * from './takeCardsDealer';
+export * from './endGame';

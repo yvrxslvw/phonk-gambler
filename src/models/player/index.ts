@@ -2,7 +2,7 @@ import { User } from 'discord.js';
 import { Card } from '../card';
 import { Room } from '../room';
 
-type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджэк**';
+type Status = '' | '**Победа**' | '**Поражение**' | '**Ничья**' | '**Блэкджэк**';
 
 export class Player {
 	public user: User;

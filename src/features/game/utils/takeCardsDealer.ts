@@ -2,6 +2,7 @@ import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
 import { timer } from '../../../helpers';
+import { endGame } from './endGame';
 
 export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -19,10 +20,7 @@ export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: st
 			await timer(500);
 		}
 
-		room.status = 'Игра окончена.';
-		await render(true);
-		await interaction.editReply({ components: [] });
-		delete global.rooms[roomId];
+		await endGame(interaction, roomId);
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while dealer taking cards.'));

@@ -3,7 +3,7 @@ type CardValue = '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q
 
 export class Card {
 	private suit: CardSuit;
-	private value: CardValue;
+	public value: CardValue;
 	private hidden: boolean = false;
 
 	constructor(suit: CardSuit, value: CardValue) {

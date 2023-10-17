@@ -15,6 +15,6 @@ export class Player {
 	public takeCard = (room: Room) => {
 		const card = room.deck.takeCard();
 		this.cards.push(card);
-		this.score += card.getScore(this.score <= 10);
+		this.score += card.getScore(this.score + 11 <= 21);
 	};
 }

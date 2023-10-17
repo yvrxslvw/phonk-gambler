@@ -12,6 +12,6 @@ export class Dealer {
 		const card = room.deck.takeCard();
 		if (hidden) card.toggleHide();
 		this.cards.push(card);
-		this.score += card.getScore(this.score <= 10);
+		this.score += card.getScore(this.score + 11 <= 21);
 	};
 }

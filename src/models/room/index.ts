@@ -1,5 +1,6 @@
+import { Dealer } from '../dealer';
 import { Deck } from '../deck';
-import { Dealer, Player } from '../player';
+import { Player } from '../player';
 
 export type RoomStatus = 'Preparing' | 'Game' | 'Finishing';
 

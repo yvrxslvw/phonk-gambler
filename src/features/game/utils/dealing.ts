@@ -2,9 +2,9 @@ import { ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
 import { timer } from '../../../helpers';
 
-export const gameDealing = async (interaction: ChatInputCommandInteraction | ButtonInteraction, roomId: string) => {
+export const gameDealing = async (interaction: ButtonInteraction, roomId: string) => {
 	const room = global.rooms[roomId];
-	const render = async () => await renderInteraction(interaction, roomId);
+	const render = async () => await renderInteraction(interaction, roomId, true);
 	const players = Object.values(room.players);
 	const dealer = room.dealer;
 

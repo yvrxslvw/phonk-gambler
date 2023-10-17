@@ -8,7 +8,7 @@ export class Room {
 	public players: Record<string, Player>;
 	public status = 'Preparing';
 	public deck = new Deck();
-	private turn = -1;
+	public turn = -1;
 
 	constructor(roomId: string, players: Record<string, Player>) {
 		this.roomId = roomId;

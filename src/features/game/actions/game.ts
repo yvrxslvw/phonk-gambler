@@ -1,8 +1,8 @@
 import { redBright } from 'colorette';
-import { ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
-import { gameDealing, renderInteraction } from '../utils';
+import { ButtonInteraction } from 'discord.js';
+import { gameDealing } from '../utils';
 
-export const gameFeature = async (interaction: ChatInputCommandInteraction | ButtonInteraction, roomId: string) => {
+export const gameFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
 		await gameDealing(interaction, roomId);
 	} catch (error) {

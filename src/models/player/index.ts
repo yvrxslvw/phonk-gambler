@@ -3,12 +3,12 @@ import { Card } from '../card';
 import { Room } from '../room';
 
 export class Player {
-	public user: User;
+	public user?: User | 'Дилер';
 	public ready: boolean = false;
 	public cards: Card[] = [];
 	public score: number = 0;
 
-	constructor(user: User) {
+	constructor(user?: User) {
 		this.user = user;
 	}
 

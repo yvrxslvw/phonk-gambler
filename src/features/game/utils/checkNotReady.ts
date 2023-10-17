@@ -7,7 +7,7 @@ export const checkNotReady = async (interaction: ChatInputCommandInteraction, pl
 	Object.values(players).forEach(player => !player.ready && notReadyPlayers.push(player.user.username));
 	if (notReadyPlayers.length > 0 && global.rooms[roomId].status === 'Preparing') {
 		await interaction.editReply({
-			content: '',
+			content: null,
 			components: [],
 			embeds: [notReadyEmbed(notReadyPlayers)],
 		});

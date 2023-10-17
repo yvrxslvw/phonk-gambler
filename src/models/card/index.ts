@@ -11,7 +11,16 @@ export class Card {
 		this.value = value;
 	}
 
-	public get = () => (this.hidden ? '[???]' : `[:${this.suit}: ${this.value}]`);
-
+	public getString = () => (this.hidden ? '[???]' : `[:${this.suit}: ${this.value}]`);
 	public toggleHide = () => (this.hidden = !this.hidden);
+	public getScore = (fullAce: boolean): number => {
+		const value = this.value;
+		let score = Number(value);
+		if (isNaN(score)) {
+			if (value === 'J' || value === 'Q' || value === 'K') score === 10;
+			else if (value === 'A' && fullAce) score = 11;
+			else score = 1;
+		}
+		return score;
+	};
 }

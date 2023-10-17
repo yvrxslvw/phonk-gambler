@@ -9,11 +9,11 @@ interface Field {
 export const gameEmbed = (roomId: string, title: string) => {
 	const players = Object.values(global.rooms[roomId].players);
 	const playersFields: Field[] = players.map(player => ({
-		name: `**${player.user.username}**`,
+		name: `**${player.user.username}** *(${player.score})*`,
 		value: `${player.cards.join(' ')}`,
-		inline: true,
+		inline: false,
 	}));
-	const fields: Field[] = [{ name: '**Дилер**', value: ``, inline: false }, ...playersFields];
+	const fields: Field[] = [{ name: '**Дилер** *(0)*', value: ``, inline: false }, ...playersFields];
 
 	return new EmbedBuilder({
 		title,

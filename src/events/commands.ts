@@ -27,5 +27,9 @@ client.on('interactionCreate', async interaction => {
 		case 'start':
 			await startFeature(interaction);
 			break;
+		case 'reset': // !
+			global.rooms = {};
+			await interaction.reply({ content: 'Очищено.' });
+			break;
 	}
 });

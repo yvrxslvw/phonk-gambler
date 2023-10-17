@@ -17,7 +17,11 @@ export class Room {
 
 	public nextTurn = (): boolean => {
 		this.turn++;
-		if (this.turn + 1 > Object.keys(this.players).length) return false;
+		if (this.turn + 1 > Object.keys(this.players).length) {
+			this.status = 'Ход дилера';
+			return false;
+		}
+		this.status = `Ход игрока ${Object.values(this.players)[this.turn].user.username}`;
 		return true;
 	};
 }

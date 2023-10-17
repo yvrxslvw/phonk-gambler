@@ -8,9 +8,10 @@ export class Dealer {
 
 	constructor() {}
 
-	public takeCard = (room: Room) => {
+	public takeCard = (room: Room, hidden: boolean) => {
 		const card = room.deck.takeCard();
+		if (hidden) card.toggleHide();
 		this.cards.push(card);
-		this.score = card.getScore(this.score <= 10);
+		this.score += card.getScore(this.score <= 10);
 	};
 }

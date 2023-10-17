@@ -18,3 +18,5 @@ export class Player {
 		this.score = card.getScore(this.score <= 10);
 	};
 }
+
+export class Dealer extends Player {}

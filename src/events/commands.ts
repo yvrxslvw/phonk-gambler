@@ -1,5 +1,14 @@
 import { client } from '../domain';
-import { cardsFeature, helpFeature, pingFeature, rulesFeature, startFeature, statsFeature, topFeature } from '../features';
+import {
+	cardsFeature,
+	helpFeature,
+	pingFeature,
+	resetFeature,
+	rulesFeature,
+	startFeature,
+	statsFeature,
+	topFeature,
+} from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -27,9 +36,8 @@ client.on('interactionCreate', async interaction => {
 		case 'start':
 			await startFeature(interaction);
 			break;
-		case 'reset': // !
-			global.rooms = {};
-			await interaction.reply({ content: 'Очищено.' });
+		case 'reset':
+			await resetFeature(interaction);
 			break;
 	}
 });

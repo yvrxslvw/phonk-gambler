@@ -17,7 +17,13 @@ export const topEmbed = (option: Option, top: Top[]) => {
 	}
 
 	let description = '';
-	if (top.length > 0) top.forEach(user => (description += `**${user.name}**: ${user.quantity}\n`));
+	if (top.length > 0)
+		top.forEach(
+			(user, index) =>
+				(description += `${index + 1}. ${user.name}: ${user.quantity} (WR: ${
+					isNaN(user.winRate) ? '0.00' : user.winRate.toFixed(2)
+				}%)\n`),
+		);
 	else description = '**Пока что нет игроков в топе...**';
 
 	return new EmbedBuilder({

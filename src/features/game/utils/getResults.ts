@@ -38,9 +38,6 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 					case '**Поражение**':
 						await user.update({ loses: user.loses + 1 });
 						break;
-					case '**Ничья**':
-						// await user.update({ draws: user.draws + 1 });
-						break;
 				}
 			}),
 		);

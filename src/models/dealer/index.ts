@@ -1,7 +1,7 @@
 import { Card } from '../card';
 import { Room } from '../room';
 
-type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджек**';
+type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджэк**';
 
 export class Dealer {
 	public name = 'Дилер';
@@ -16,5 +16,7 @@ export class Dealer {
 		if (hidden) card.toggleHide();
 		this.cards.push(card);
 		this.score += card.getScore(this.score + 11 <= 21);
+		if (this.score === 21) this.status = '**Блэкджэк**';
+		else if (this.score > 21) this.status = '**Поражение**';
 	};
 }

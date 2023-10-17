@@ -2,7 +2,7 @@ import { User } from 'discord.js';
 import { Card } from '../card';
 import { Room } from '../room';
 
-type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджек**';
+type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджэк**';
 
 export class Player {
 	public user: User;
@@ -19,5 +19,7 @@ export class Player {
 		const card = room.deck.takeCard();
 		this.cards.push(card);
 		this.score += card.getScore(this.score + 11 <= 21);
+		if (this.score === 21) this.status = '**Блэкджэк**';
+		else if (this.score > 21) this.status = '**Поражение**';
 	};
 }

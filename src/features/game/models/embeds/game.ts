@@ -17,7 +17,7 @@ export const gameEmbed = (roomId: string) => {
 	const dealerStatus = room.status === 'Ход Дилера' || room.status === 'Игра окончена.' ? dealer.status : '';
 
 	const playersFields: Field[] = players.map(player => ({
-		name: `**${player.user.username}** *(${player.score})* ${player.status}`,
+		name: `${player.insurance ? '**+** ' : ''}**${player.user.username}** *(${player.score})* ${player.status}`,
 		value: player.cards.map(card => card.getString()).join(' '),
 		inline: false,
 	}));

@@ -16,13 +16,16 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 				let user = await User.findOne({ where: { name: player.user.username } });
 				if (!user) user = await User.create({ name: player.user.username });
 				const playerScore = player.score;
-				if (!player.status) {
+				if (!player.status && !player.insurance) {
 					if (dealerScore > 21) player.status = '**Победа**';
 					else if (dealerScore <= 21) {
 						if (dealerScore > playerScore) player.status = '**Поражение**';
 						else if (dealerScore < playerScore) player.status = '**Победа**';
 						else if (dealerScore === playerScore) player.status = '**Ничья**';
 					}
+				} else if (player.insurance) {
+					if (room.dealer.cards.length === 2 && dealerScore === 21) player.status = '**Победа**';
+					else player.status = '**Поражение**';
 				}
 
 				switch (player.status) {

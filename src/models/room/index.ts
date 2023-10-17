@@ -4,15 +4,19 @@ import { Player } from '../player';
 
 export class Room {
 	public roomId: string;
-	public dealer: Dealer = new Dealer();
+	public dealer: Dealer;
 	public players: Record<string, Player>;
-	public status = 'Preparing';
-	public deck = new Deck();
-	public turn = -1;
+	public status: string;
+	public deck: Deck;
+	public turn: number;
 
 	constructor(roomId: string, players: Record<string, Player>) {
 		this.roomId = roomId;
+		this.dealer = new Dealer();
 		this.players = players;
+		this.status = 'Preparing';
+		this.deck = new Deck();
+		this.turn = -1;
 	}
 
 	public nextTurn = (): boolean => {

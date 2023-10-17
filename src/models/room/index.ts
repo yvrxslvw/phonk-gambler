@@ -18,9 +18,10 @@ export class Room {
 	public nextTurn = (): boolean => {
 		this.turn++;
 		if (this.turn + 1 > Object.keys(this.players).length) {
-			this.status = 'Ход дилера';
+			this.status = 'Ход Дилера';
 			return false;
 		}
+		if (Object.values(this.players)[this.turn].score >= 21) return this.nextTurn();
 		this.status = `Ход игрока ${Object.values(this.players)[this.turn].user.username}`;
 		return true;
 	};

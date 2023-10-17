@@ -1,7 +1,6 @@
 import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
-import { renderInteraction } from '../utils';
-import { checkAccess } from '../utils/checkAccess';
+import { renderInteraction, checkAccess, takeCardsDealer } from '../utils';
 
 export const takeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -11,6 +10,10 @@ export const takeCardFeature = async (interaction: ButtonInteraction, roomId: st
 
 		if (!checkAccess(interaction, roomId)) return;
 		player.takeCard(room);
+		if (player.score >= 21) {
+			if (!room.nextTurn()) return await takeCardsDealer(interaction, roomId);
+			return;
+		}
 		renderInteraction(interaction, roomId, false);
 	} catch (error) {
 		console.error(error);

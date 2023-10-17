@@ -10,8 +10,11 @@ export const gameEmbed = (roomId: string) => {
 	const room = global.rooms[roomId];
 	const players = Object.values(room.players);
 	const dealer = room.dealer;
-	const dealerScore = room.status === 'Ход дилера' || dealer.score === 0 ? dealer.score : dealer.cards[0].getScore(false);
-	const dealerStatus = room.status === 'Ход дилера' ? dealer.status : '';
+	const dealerScore =
+		room.status !== 'Ход Дилера' && dealer.score !== 0 && room.status !== 'Игра окончена.'
+			? dealer.cards[0].getScore(true)
+			: dealer.score;
+	const dealerStatus = room.status === 'Ход Дилера' || room.status === 'Игра окончена.' ? dealer.status : '';
 
 	const playersFields: Field[] = players.map(player => ({
 		name: `**${player.user.username}** *(${player.score})* ${player.status}`,

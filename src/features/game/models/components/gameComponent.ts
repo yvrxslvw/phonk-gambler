@@ -9,7 +9,7 @@ export const gameComponent = (roomId: string): ActionRowBuilder<ButtonBuilder> =
 	let refuseButtonDisabled = true;
 	let insuranceButtonDisabled = true;
 
-	if (room.status !== 'Раздача карт' && room.status !== 'Инициализация') {
+	if (room.status !== 'Раздача карт' && room.status !== 'Инициализация' && room.status !== 'Ход Дилера') {
 		takeButtonDisabled = false;
 		refuseButtonDisabled = false;
 		insuranceButtonDisabled = false;
@@ -17,7 +17,6 @@ export const gameComponent = (roomId: string): ActionRowBuilder<ButtonBuilder> =
 		const dealerCardValue = dealer.cards[0].value;
 		if (dealerCardValue !== 'J' && dealerCardValue !== 'Q' && dealerCardValue !== 'K' && dealerCardValue !== 'A')
 			insuranceButtonDisabled = true;
-		else if (dealerCardValue === 'A') refuseButtonDisabled = true;
 	}
 
 	return new ActionRowBuilder({

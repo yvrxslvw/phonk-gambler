@@ -5,7 +5,7 @@ import { notReadyEmbed } from '../models';
 export const checkNotReady = async (interaction: ChatInputCommandInteraction, players: Players, roomId: string) => {
 	let notReadyPlayers: string[] = [];
 	Object.values(players).forEach(player => !player.ready && notReadyPlayers.push(player.user.username));
-	if (notReadyPlayers.length > 0) {
+	if (notReadyPlayers.length > 0 && global.rooms[roomId].status === 'Preparing') {
 		await interaction.editReply({
 			content: '',
 			components: [],

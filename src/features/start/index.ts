@@ -1,9 +1,10 @@
 import { redBright } from 'colorette';
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
 import { v4 as uuidv4 } from 'uuid';
 import { timer } from '../../helpers';
 import { errorFeature } from '../error';
 import { checkNotReady, checkParams, initPlayers, startGame } from './utils';
+import { startEmbed } from './models';
 
 export const startFeature = async (interaction: ChatInputCommandInteraction) => {
 	try {
@@ -18,6 +19,16 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while starting the game.'));
+	}
+};
+
+export const readyFeature = async (interaction: ButtonInteraction, roomId: string) => {
+	try {
+		global.rooms[roomId].players[interaction.user.username].ready = true;
+		await interaction.update({ embeds: [startEmbed(Object.values(global.rooms[roomId].players))] });
+	} catch (error) {
+		console.error(error);
+		console.error(redBright('Error while ready in the game.'));
 	}
 };
 

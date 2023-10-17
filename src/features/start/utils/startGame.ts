@@ -8,7 +8,7 @@ export const startGame = async (interaction: ChatInputCommandInteraction, player
 	Object.values(players).forEach(player => (content += `<@${player.user.id}> `));
 	await interaction.reply({
 		content,
-		embeds: [startEmbed(interaction.user, Object.values(players))],
+		embeds: [startEmbed(Object.values(players))],
 		components: [readyComponent(roomId)],
 	});
 };

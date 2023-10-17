@@ -1,4 +1,5 @@
 import { client } from '../domain';
+import { readyFeature } from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
@@ -6,8 +7,7 @@ client.on('interactionCreate', async interaction => {
 
 	switch (buttonId) {
 		case 'gameReady':
-			await interaction.reply({ content: 'click event' });
-			console.log(global.rooms[extraId]);
+			await readyFeature(interaction, extraId);
 			break;
 	}
 });

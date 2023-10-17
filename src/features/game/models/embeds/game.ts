@@ -6,7 +6,7 @@ interface Field {
 	inline: boolean;
 }
 
-export const gameEmbed = (roomId: string, title: string) => {
+export const gameEmbed = (roomId: string) => {
 	const players = Object.values(global.rooms[roomId].players);
 	const playersFields: Field[] = players.map(player => ({
 		name: `**${player.user.username}** *(${player.score})*`,
@@ -16,7 +16,7 @@ export const gameEmbed = (roomId: string, title: string) => {
 	const fields: Field[] = [{ name: '**Дилер** *(0)*', value: ``, inline: false }, ...playersFields];
 
 	return new EmbedBuilder({
-		title,
+		title: global.rooms[roomId].status,
 		fields,
 		footer: { text: 'Good luck, have fun.' },
 		timestamp: Date.now(),

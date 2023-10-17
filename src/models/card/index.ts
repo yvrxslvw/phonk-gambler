@@ -17,7 +17,7 @@ export class Card {
 		const value = this.value;
 		let score = Number(value);
 		if (isNaN(score)) {
-			if (value === 'J' || value === 'Q' || value === 'K') score === 10;
+			if (value === 'J' || value === 'Q' || value === 'K') score = 10;
 			else if (value === 'A' && fullAce) score = 11;
 			else score = 1;
 		}

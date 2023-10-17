@@ -17,19 +17,23 @@ export const gameDealing = async (interaction: ChatInputCommandInteraction | But
 	room.dealer.takeCard(room, false);
 	await render();
 
-	Object.values(room.players).map(async player => {
-		await timer(500);
-		player.takeCard(room);
-		await render();
-	});
+	await Promise.all(
+		Object.values(room.players).map(async player => {
+			await timer(500);
+			player.takeCard(room);
+			await render();
+		}),
+	);
 
 	await timer(500);
 	room.dealer.takeCard(room, true);
 	await render();
 
-	Object.values(room.players).map(async player => {
-		await timer(500);
-		player.takeCard(room);
-		await render();
-	});
+	await Promise.all(
+		Object.values(room.players).map(async player => {
+			await timer(500);
+			player.takeCard(room);
+			await render();
+		}),
+	);
 };

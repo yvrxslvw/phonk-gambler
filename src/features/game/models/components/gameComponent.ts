@@ -15,7 +15,13 @@ export const gameComponent = (roomId: string): ActionRowBuilder<ButtonBuilder> =
 		insuranceButtonDisabled = false;
 
 		const dealerCardValue = dealer.cards[0].value;
-		if (dealerCardValue !== 'J' && dealerCardValue !== 'Q' && dealerCardValue !== 'K' && dealerCardValue !== 'A')
+		if (
+			dealerCardValue !== '10' &&
+			dealerCardValue !== 'J' &&
+			dealerCardValue !== 'Q' &&
+			dealerCardValue !== 'K' &&
+			dealerCardValue !== 'A'
+		)
 			insuranceButtonDisabled = true;
 	}
 

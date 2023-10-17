@@ -1,6 +1,7 @@
 import { ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
 import { timer } from '../../../helpers';
+import { takeCardsDealer } from './takeCardsDealer';
 
 export const gameDealing = async (interaction: ButtonInteraction, roomId: string) => {
 	const room = global.rooms[roomId];
@@ -39,6 +40,6 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 		}),
 	);
 
-	room.nextTurn();
-	render();
+	if (!room.nextTurn()) return await takeCardsDealer(interaction, roomId);
+	await render();
 };

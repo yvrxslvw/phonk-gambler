@@ -1,3 +1,4 @@
+import { redBright } from 'colorette';
 import { Card } from '../card';
 import { Room } from '../room';
 
@@ -13,6 +14,7 @@ export class Dealer {
 
 	public takeCard = (room: Room, hidden: boolean) => {
 		const card = room.deck.takeCard();
+		if (!card) throw new Error(redBright('Error while taking the card.'));
 		if (hidden) card.toggleHide();
 		this.cards.push(card);
 		this.score += card.getScore(this.score + 11 <= 21);

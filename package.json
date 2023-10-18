@@ -17,7 +17,6 @@
 		"url": "https://github.com/yvrxslvw/phonk-gambler"
 	},
 	"dependencies": {
-		"@discordjs/rest": "^2.0.1",
 		"colorette": "^2.0.20",
 		"discord.js": "^14.13.0",
 		"dotenv": "^16.3.1",

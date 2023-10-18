@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction } from 'discord.js';
-import { User } from '../../models';
 import { redBright } from 'colorette';
+import { User } from '../../models';
 import { Option, Top, topEmbed } from './models';
 
 export const topFeature = async (interaction: ChatInputCommandInteraction) => {

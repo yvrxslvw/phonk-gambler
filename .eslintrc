@@ -1,0 +1,25 @@
+{
+	"root": true,
+	"env": { "node": true },
+	"extends": ["airbnb/base", "airbnb-typescript/base"],
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"import/prefer-default-export": 0,
+		"max-len": [2, 128],
+		"no-tabs": 0,
+		"arrow-parens": 0,
+		"no-promise-executor-return": 0,
+		"@typescript-eslint/indent": [2, "tab"],
+		"object-curly-newline": 0,
+		"no-useless-catch": 0,
+		"linebreak-style": 0,
+		"no-console": 0,
+		"operator-linebreak": 0,
+		"implicit-arrow-linebreak": 0,
+		"function-paren-newline": 0,
+		"no-param-reassign": 0,
+		"import/no-cycle": 0
+	}
+}

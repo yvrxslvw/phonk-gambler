@@ -9,12 +9,10 @@ interface Field {
 export const gameEmbed = (roomId: string) => {
 	const room = global.rooms[roomId];
 	const players = Object.values(room.players);
-	const dealer = room.dealer;
+	const { score, status, cards } = room.dealer;
 	const dealerScore =
-		room.status !== 'Ход Дилера' && dealer.score !== 0 && room.status !== 'Игра окончена.'
-			? dealer.cards[0].getScore(true)
-			: dealer.score;
-	const dealerStatus = room.status === 'Ход Дилера' || room.status === 'Игра окончена.' ? dealer.status : '';
+		room.status !== 'Ход Дилера' && score !== 0 && room.status !== 'Игра окончена.' ? cards[0].getScore(true) : score;
+	const dealerStatus = room.status === 'Ход Дилера' || room.status === 'Игра окончена.' ? status : '';
 
 	const playersFields: Field[] = players.map(player => ({
 		name: `${player.insurance ? '**+** ' : ''}**${player.user.username}** *(${player.score})* ${player.status}`,
@@ -25,7 +23,7 @@ export const gameEmbed = (roomId: string) => {
 	const fields: Field[] = [
 		{
 			name: `**Дилер** *(${dealerScore})* ${dealerStatus}`,
-			value: dealer.cards.map(card => card.getString()).join(' '),
+			value: cards.map(card => card.getString()).join(' '),
 			inline: false,
 		},
 		...playersFields,

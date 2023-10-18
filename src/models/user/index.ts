@@ -3,9 +3,13 @@ import { sql } from '../../domain';
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 	declare id: CreationOptional<number>;
+
 	declare name: string;
+
 	declare wins: CreationOptional<number>;
+
 	declare loses: CreationOptional<number>;
+
 	declare blackjacks: CreationOptional<number>;
 }
 

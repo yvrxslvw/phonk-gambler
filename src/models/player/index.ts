@@ -1,16 +1,21 @@
 import { User } from 'discord.js';
+import { redBright } from 'colorette';
 import { Card } from '../card';
 import { Room } from '../room';
-import { redBright } from 'colorette';
 
 type Status = '' | '**Победа**' | '**Поражение**' | '**Ничья**' | '**Блэкджэк**';
 
 export class Player {
 	public user: User;
+
 	public ready = false;
+
 	public cards: Card[] = [];
+
 	public score = 0;
+
 	public status: Status = '';
+
 	public insurance: boolean = false;
 
 	constructor(user: User) {

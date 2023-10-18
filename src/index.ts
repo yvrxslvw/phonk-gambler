@@ -30,8 +30,11 @@ const bootstrap = async () => {
 			startCommand,
 			resetCommand,
 		]);
-		sql.syncModels([User]);
-		console.log(greenBright(`Application has been started. ${yellowBright(`(${getCurrentTime(runtime)}s)`)}`));
+		sql.putModels([User]);
+		sql.syncModels();
+		console.log(
+			greenBright(`Application has been started. ${yellowBright(`(${getCurrentTime(runtime)}s)`)}`),
+		);
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('The application has not been started.'));

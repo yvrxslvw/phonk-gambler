@@ -1,12 +1,14 @@
 import { Client, Routes } from 'discord.js';
-import { BOT_DATA } from './data';
 import { blueBright, greenBright, yellowBright } from 'colorette';
+import { BOT_DATA } from './data';
 import { Command } from '../../models';
 import { getCurrentTime } from '../../helpers';
 
 class Bot extends Client {
 	private APP_TOKEN: string;
+
 	private GUILD_ID: string;
+
 	private APP_ID: string;
 
 	constructor({ app_intents: intents, app_token, guild_id, app_id }: typeof BOT_DATA) {

@@ -3,7 +3,7 @@ import { Option } from './option';
 import { Top } from './top';
 
 export const topEmbed = (option: Option, top: Top[]) => {
-	let stringOption: string;
+	let stringOption: string = '';
 	switch (option) {
 		case 'wins':
 			stringOption = 'победам';
@@ -14,17 +14,17 @@ export const topEmbed = (option: Option, top: Top[]) => {
 		case 'blackjacks':
 			stringOption = 'блэкджэкам';
 			break;
+		default:
 	}
 
 	let description = '';
-	if (top.length > 0)
-		top.forEach(
-			(user, index) =>
-				(description += `${index + 1}. ${user.name}: ${user.quantity} (WR: ${
-					isNaN(user.winRate) ? '0.00' : user.winRate.toFixed(2)
-				}%)\n`),
-		);
-	else description = '**Пока что нет игроков в топе...**';
+	if (top.length > 0) {
+		top.forEach((user, index) => {
+			description += `${index + 1}. ${user.name}: ${user.quantity} (WR: ${
+				Number.isNaN(user.winRate) ? '0.00' : user.winRate.toFixed(2)
+			}%)\n`;
+		});
+	} else description = '**Пока что нет игроков в топе...**';
 
 	return new EmbedBuilder({
 		title: `Топ Сервера по ${stringOption}:`,

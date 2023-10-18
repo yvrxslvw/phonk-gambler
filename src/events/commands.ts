@@ -39,5 +39,6 @@ client.on('interactionCreate', async interaction => {
 		case 'reset':
 			await resetFeature(interaction);
 			break;
+		default:
 	}
 });

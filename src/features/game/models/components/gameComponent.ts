@@ -3,7 +3,7 @@ import { insuranceButton, refuseButton, takeCardButton } from '../buttons';
 
 export const gameComponent = (roomId: string): ActionRowBuilder<ButtonBuilder> => {
 	const room = global.rooms[roomId];
-	const dealer = room.dealer;
+	const { cards } = room.dealer;
 
 	let takeButtonDisabled = true;
 	let refuseButtonDisabled = true;
@@ -14,15 +14,16 @@ export const gameComponent = (roomId: string): ActionRowBuilder<ButtonBuilder> =
 		refuseButtonDisabled = false;
 		insuranceButtonDisabled = false;
 
-		const dealerCardValue = dealer.cards[0].value;
+		const dealerCardValue = cards[0].value;
 		if (
 			dealerCardValue !== '10' &&
 			dealerCardValue !== 'J' &&
 			dealerCardValue !== 'Q' &&
 			dealerCardValue !== 'K' &&
 			dealerCardValue !== 'A'
-		)
+		) {
 			insuranceButtonDisabled = true;
+		}
 	}
 
 	return new ActionRowBuilder({

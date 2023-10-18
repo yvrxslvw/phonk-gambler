@@ -3,7 +3,7 @@ import { insuranceFeature, readyFeature, refuseFeature, takeCardFeature } from '
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
-	const [_, buttonId, extraId] = interaction.customId.match(/^(.*)Button_(.*)$/)!;
+	const [, buttonId, extraId] = interaction.customId.match(/^(.*)Button_(.*)$/)!;
 
 	switch (buttonId) {
 		case 'gameReady':
@@ -18,5 +18,6 @@ client.on('interactionCreate', async interaction => {
 		case 'gameTakeCard':
 			await takeCardFeature(interaction, extraId);
 			break;
+		default:
 	}
 });

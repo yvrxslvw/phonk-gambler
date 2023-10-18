@@ -9,8 +9,11 @@ export const startFeature = async (interaction: ChatInputCommandInteraction) => 
 	try {
 		const roomId = uuidv4();
 		const players = initPlayers(interaction);
-		let error = checkParams(players);
-		if (error) return errorFeature(interaction, error);
+		const error = checkParams(players);
+		if (error) {
+			errorFeature(interaction, error);
+			return;
+		}
 
 		await startGame(interaction, players, roomId);
 		await timer(15 * 1000);

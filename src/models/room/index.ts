@@ -4,10 +4,15 @@ import { Player } from '../player';
 
 export class Room {
 	public roomId: string;
+
 	public dealer: Dealer;
+
 	public players: Record<string, Player>;
+
 	public status: string;
+
 	public deck: Deck;
+
 	public turn: number;
 
 	constructor(roomId: string, players: Record<string, Player>) {
@@ -20,7 +25,7 @@ export class Room {
 	}
 
 	public nextTurn = (): boolean => {
-		this.turn++;
+		this.turn += 1;
 		if (this.turn + 1 > Object.keys(this.players).length) {
 			this.status = 'Ход Дилера';
 			return false;

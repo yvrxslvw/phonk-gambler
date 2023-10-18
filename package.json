@@ -4,7 +4,8 @@
 	"description": "Blackjack game bot for Discord",
 	"scripts": {
 		"dev": "rollup -c && cross-env APP_MODE=development node ./dist/bundle.js",
-		"build": "rollup -c"
+		"build": "rollup -c",
+		"lint": "eslint ./src"
 	},
 	"author": {
 		"name": "yvrxslvw",
@@ -28,8 +29,14 @@
 	"devDependencies": {
 		"@swc/core": "^1.3.92",
 		"@types/uuid": "^9.0.5",
+		"@typescript-eslint/eslint-plugin": "^6.8.0",
+		"@typescript-eslint/parser": "^6.8.0",
 		"builtin-modules": "^3.3.0",
 		"cross-env": "^7.0.3",
+		"eslint": "^8.51.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-airbnb-typescript": "^17.1.0",
+		"eslint-plugin-import": "^2.28.1",
 		"rollup": "^4.0.2",
 		"rollup-plugin-swc3": "^0.10.2",
 		"rollup-plugin-typescript2": "^0.36.0",

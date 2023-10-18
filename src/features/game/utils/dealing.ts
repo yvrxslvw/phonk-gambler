@@ -1,13 +1,13 @@
-import { ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
+import { ButtonInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
 import { timer } from '../../../helpers';
 import { takeCardsDealer } from './takeCardsDealer';
 
 export const gameDealing = async (interaction: ButtonInteraction, roomId: string) => {
 	const room = global.rooms[roomId];
-	const render = async () => await renderInteraction(interaction, roomId, true);
+	const render = () => renderInteraction(interaction, roomId, true);
 	const players = Object.values(room.players);
-	const dealer = room.dealer;
+	const { takeCard } = room.dealer;
 
 	room.status = 'Инициализация';
 	await render();
@@ -17,7 +17,7 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	await render();
 
 	await timer(500);
-	dealer.takeCard(room, false);
+	takeCard(room, false);
 	await render();
 
 	await Promise.all(
@@ -29,7 +29,7 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	);
 
 	await timer(500);
-	dealer.takeCard(room, true);
+	takeCard(room, true);
 	await render();
 
 	await Promise.all(
@@ -40,6 +40,6 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 		}),
 	);
 
-	if (!room.nextTurn()) return await takeCardsDealer(interaction, roomId);
-	await render();
+	if (!room.nextTurn()) await takeCardsDealer(interaction, roomId);
+	else await render();
 };

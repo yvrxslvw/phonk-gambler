@@ -1,6 +1,6 @@
 import { ButtonInteraction } from 'discord.js';
-import { gameComponent, gameEmbed } from '../models';
 import { redBright } from 'colorette';
+import { gameComponent, gameEmbed } from '../models';
 
 export const renderInteraction = async (interaction: ButtonInteraction, roomId: string, edit: boolean) => {
 	try {

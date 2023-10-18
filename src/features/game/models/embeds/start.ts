@@ -3,7 +3,9 @@ import { Player } from '../../../../models';
 
 export const startEmbed = (players: Player[]) => {
 	let description = '**Участники:**\n';
-	players.forEach(player => (description += `*${player.user.username}* - **${player.ready ? 'Ready' : 'Not ready'}**\n`));
+	players.forEach(player => {
+		description += `*${player.user.username}* - **${player.ready ? 'Ready' : 'Not ready'}**\n`;
+	});
 	description += '\n**Через 15 секунд начнется игра! Как будете готовы - нажмите на кнопку "Готов!".**';
 
 	return new EmbedBuilder({

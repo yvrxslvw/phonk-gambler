@@ -9,9 +9,14 @@ export const refuseFeature = async (interaction: ButtonInteraction, roomId: stri
 		const player = room.players[interaction.user.username];
 
 		if (!checkAccess(interaction, roomId)) return;
-		if (room.dealer.cards[0].value === 'A' && player.cards.length === 2)
-			return await errorFeature(interaction, 'Вы не можете отказаться, когда у Дилера первая карта - Туз.');
-		if (!room.nextTurn()) return await takeCardsDealer(interaction, roomId);
+		if (room.dealer.cards[0].value === 'A' && player.cards.length === 2) {
+			await errorFeature(interaction, 'Вы не можете отказаться, когда у Дилера первая карта - Туз.');
+			return;
+		}
+		if (!room.nextTurn()) {
+			await takeCardsDealer(interaction, roomId);
+			return;
+		}
 		await renderInteraction(interaction, roomId, false);
 	} catch (error) {
 		console.error(error);

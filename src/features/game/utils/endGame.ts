@@ -1,6 +1,6 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { getResults } from './getResults';
+import { AppError } from '../../../utils';
 
 export const endGame = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -8,7 +8,6 @@ export const endGame = async (interaction: ButtonInteraction, roomId: string) =>
 		await interaction.editReply({ components: [] });
 		delete global.rooms[roomId];
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while ending the game.'));
+		await AppError(interaction, 'ending the game', error);
 	}
 };

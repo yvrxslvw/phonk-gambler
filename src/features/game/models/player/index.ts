@@ -1,7 +1,7 @@
 import { User } from 'discord.js';
 import { Card } from '../card';
 
-type Status = '' | '**Победа**' | '**Поражение**' | '**Ничья**' | '**Блэкджэк**';
+type Status = '' | '**Победа**' | '**Поражение**' | '**Ничья**' | '**Блэкджек**';
 
 export class Player {
 	public user: User;

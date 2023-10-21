@@ -1,7 +1,7 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { takeCardsDealer } from '../utils';
 import { errorFeature } from '../../error';
+import { AppError } from '../../../utils';
 
 export const gameInsuranceFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -23,7 +23,6 @@ export const gameInsuranceFeature = async (interaction: ButtonInteraction, roomI
 		room.nextTurn();
 		if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while insurance turn.'));
+		await AppError(interaction, 'executing button insurance feature', error);
 	}
 };

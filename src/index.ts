@@ -1,6 +1,6 @@
 import './config';
 import './events';
-import { greenBright, redBright, yellowBright } from 'colorette';
+import { greenBright, yellowBright } from 'colorette';
 import { client, sql } from './domain';
 import { User } from './models';
 import {
@@ -13,6 +13,7 @@ import {
 	topCommand,
 } from './features';
 import { getCurrentTime } from './helpers';
+import { AppError } from './utils';
 
 const bootstrap = async () => {
 	try {
@@ -34,8 +35,7 @@ const bootstrap = async () => {
 			greenBright(`Application has been started. ${yellowBright(`(${getCurrentTime(runtime)}s)`)}`),
 		);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('The application has not been started.'));
+		await AppError(null, 'starting application', error);
 		process.exit();
 	}
 };

@@ -1,8 +1,7 @@
 /* eslint-disable no-await-in-loop */
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
-import { timer } from '../../../helpers';
+import { AppError, timer } from '../../../utils';
 import { endGame } from './endGame';
 
 export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: string) => {
@@ -22,7 +21,6 @@ export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: st
 
 		await endGame(interaction, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while dealer taking cards.'));
+		await AppError(interaction, 'taking cards for dealer', error);
 	}
 };

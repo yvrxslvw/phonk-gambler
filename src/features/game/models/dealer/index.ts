@@ -1,6 +1,6 @@
 import { Card } from '../card';
 
-type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджэк**';
+type Status = '' | '**Победа**' | '**Поражение**' | '**Блэкджек**';
 
 export class Dealer {
 	public name = 'Дилер';

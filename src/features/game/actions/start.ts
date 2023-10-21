@@ -1,7 +1,6 @@
-import { redBright } from 'colorette';
 import { ChatInputCommandInteraction } from 'discord.js';
 import { v4 as uuidv4 } from 'uuid';
-import { timer } from '../../../helpers';
+import { AppError, timer } from '../../../utils';
 import { errorFeature } from '../../error';
 import { checkNotReady, checkParams, initPlayers, startGame } from '../utils';
 
@@ -19,7 +18,6 @@ export const gameStartFeature = async (interaction: ChatInputCommandInteraction)
 		await timer(15 * 1000);
 		await checkNotReady(interaction, players, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while starting the game.'));
+		await AppError(interaction, 'executing start command feature', error);
 	}
 };

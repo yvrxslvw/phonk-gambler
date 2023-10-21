@@ -1,8 +1,8 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { startEmbed } from '../models';
 import { gameFeature } from './game';
 import { errorFeature } from '../../error';
+import { AppError } from '../../../utils';
 
 export const gameReadyFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -18,7 +18,6 @@ export const gameReadyFeature = async (interaction: ButtonInteraction, roomId: s
 		await interaction.update({ embeds: [startEmbed(Object.values(room.players))] });
 		if (Object.values(global.rooms[roomId].players).every(player => player.ready)) await gameFeature(interaction, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while ready in the game.'));
+		await AppError(interaction, 'executing button ready feature', error);
 	}
 };

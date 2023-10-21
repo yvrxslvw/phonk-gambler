@@ -1,7 +1,7 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
 import { User } from '../../../models';
+import { AppError } from '../../../utils';
 
 export const getResults = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -29,7 +29,7 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 				}
 
 				switch (player.status) {
-					case '**Блэкджэк**':
+					case '**Блэкджек**':
 						await user.update({ blackjacks: user.blackjacks + 1 });
 						break;
 					case '**Победа**':
@@ -45,7 +45,6 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 
 		await render();
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while getting game results.'));
+		await AppError(interaction, 'getting game results', error);
 	}
 };

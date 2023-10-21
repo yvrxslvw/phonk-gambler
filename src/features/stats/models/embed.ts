@@ -8,7 +8,7 @@ export const statsEmbed = (name: string, wins: number, loses: number, blackjacks
 		description:
 			`**Побед**: ${wins};\n` +
 			`**Поражений**: ${loses};\n` +
-			`**21 очко**: ${blackjacks}.\n` +
+			`**Блэкджеков**: ${blackjacks}.\n\n` +
 			`**Рейтинг побед**: ${Number.isNaN(winRate) ? '0.00' : winRate.toFixed(2)}%`,
 		color: 0x9b3f4e,
 	});

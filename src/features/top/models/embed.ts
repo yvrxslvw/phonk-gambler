@@ -12,7 +12,7 @@ export const topEmbed = (option: Option, top: Top[]) => {
 			stringOption = 'поражениям';
 			break;
 		case 'blackjacks':
-			stringOption = 'блэкджэкам';
+			stringOption = 'блэкджекам';
 			break;
 		default:
 	}

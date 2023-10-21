@@ -61,7 +61,7 @@ export class Room {
 		if (!card) throw new Error(redBright('Error while taking the card for player.'));
 		player.cards.push(card);
 		player.score += card.getScore(player.score + 11 <= 21);
-		if (player.score === 21) player.status = '**Блэкджэк**';
+		if (player.score === 21) player.status = '**Блэкджек**';
 		else if (player.score > 21) player.status = '**Поражение**';
 	};
 
@@ -71,7 +71,7 @@ export class Room {
 		if (hidden) card.toggleHide();
 		this.dealer.cards.push(card);
 		this.dealer.score += card.getScore(this.dealer.score + 11 <= 21);
-		if (this.dealer.score === 21) this.dealer.status = '**Блэкджэк**';
+		if (this.dealer.score === 21) this.dealer.status = '**Блэкджек**';
 		else if (this.dealer.score > 21) this.dealer.status = '**Поражение**';
 	};
 }

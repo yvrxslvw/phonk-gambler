@@ -1,7 +1,7 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction, takeCardsDealer } from '../utils';
 import { errorFeature } from '../../error';
+import { AppError } from '../../../utils';
 
 export const gameRefuseFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -33,7 +33,6 @@ export const gameRefuseFeature = async (interaction: ButtonInteraction, roomId: 
 		}
 		await renderInteraction(interaction, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while refuse turn.'));
+		await AppError(interaction, 'executing button refuse feature', error);
 	}
 };

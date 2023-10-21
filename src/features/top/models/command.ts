@@ -16,7 +16,7 @@ export const topCommand = new Command('top', 'Показать статисти�
 				value: 'loses',
 			},
 			{
-				name: 'По блэкджэкам',
+				name: 'По блэкджекам',
 				value: 'blackjacks',
 			},
 		],

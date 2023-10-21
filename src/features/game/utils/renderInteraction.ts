@@ -1,6 +1,6 @@
 import { ButtonInteraction } from 'discord.js';
-import { redBright } from 'colorette';
 import { gameComponent, gameEmbed } from '../models';
+import { AppError } from '../../../utils';
 
 export const renderInteraction = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -10,7 +10,6 @@ export const renderInteraction = async (interaction: ButtonInteraction, roomId: 
 			components: [gameComponent(roomId)],
 		});
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while rendering game embed.'));
+		await AppError(interaction, 'rendering game interaction', error);
 	}
 };

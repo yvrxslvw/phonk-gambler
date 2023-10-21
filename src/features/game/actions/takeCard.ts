@@ -1,7 +1,7 @@
-import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction, takeCardsDealer } from '../utils';
 import { errorFeature } from '../../error';
+import { AppError } from '../../../utils';
 
 export const gameTakeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -27,7 +27,6 @@ export const gameTakeCardFeature = async (interaction: ButtonInteraction, roomId
 		}
 		renderInteraction(interaction, roomId);
 	} catch (error) {
-		console.error(error);
-		console.error(redBright('Error while taking card.'));
+		await AppError(interaction, 'executing button take card feature', error);
 	}
 };

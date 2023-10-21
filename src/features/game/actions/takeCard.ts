@@ -3,7 +3,7 @@ import { ButtonInteraction } from 'discord.js';
 import { renderInteraction, takeCardsDealer } from '../utils';
 import { errorFeature } from '../../error';
 
-export const takeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
+export const gameTakeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
 		const room = global.rooms[roomId];
 		const { username } = interaction.user;

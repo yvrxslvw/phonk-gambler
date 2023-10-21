@@ -1,5 +1,5 @@
 import { client } from '../domain';
-import { insuranceFeature, readyFeature, refuseFeature, takeCardFeature } from '../features';
+import { gameInsuranceFeature, gameReadyFeature, gameRefuseFeature, gameTakeCardFeature } from '../features';
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
@@ -7,16 +7,16 @@ client.on('interactionCreate', async interaction => {
 
 	switch (buttonId) {
 		case 'gameReady':
-			await readyFeature(interaction, extraId);
+			await gameReadyFeature(interaction, extraId);
 			break;
 		case 'gameInsurance':
-			await insuranceFeature(interaction, extraId);
+			await gameInsuranceFeature(interaction, extraId);
 			break;
 		case 'gameRefuse':
-			await refuseFeature(interaction, extraId);
+			await gameRefuseFeature(interaction, extraId);
 			break;
 		case 'gameTakeCard':
-			await takeCardFeature(interaction, extraId);
+			await gameTakeCardFeature(interaction, extraId);
 			break;
 		default:
 	}

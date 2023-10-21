@@ -5,7 +5,7 @@ import { timer } from '../../../helpers';
 import { errorFeature } from '../../error';
 import { checkNotReady, checkParams, initPlayers, startGame } from '../utils';
 
-export const startFeature = async (interaction: ChatInputCommandInteraction) => {
+export const gameStartFeature = async (interaction: ChatInputCommandInteraction) => {
 	try {
 		const roomId = uuidv4();
 		const players = initPlayers(interaction);

@@ -6,4 +6,3 @@ export * from './error';
 export * from './stats';
 export * from './top';
 export * from './game';
-export * from './admin';

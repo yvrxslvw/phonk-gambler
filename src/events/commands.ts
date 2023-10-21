@@ -3,9 +3,8 @@ import {
 	cardsFeature,
 	helpFeature,
 	pingFeature,
-	resetFeature,
 	rulesFeature,
-	startFeature,
+	gameStartFeature,
 	statsFeature,
 	topFeature,
 } from '../features';
@@ -34,10 +33,7 @@ client.on('interactionCreate', async interaction => {
 			await topFeature(interaction);
 			break;
 		case 'start':
-			await startFeature(interaction);
-			break;
-		case 'reset':
-			await resetFeature(interaction);
+			await gameStartFeature(interaction);
 			break;
 		default:
 	}

@@ -7,7 +7,6 @@ import {
 	cardsCommand,
 	helpCommand,
 	pingCommand,
-	resetCommand,
 	rulesCommand,
 	startCommand,
 	statsCommand,
@@ -28,7 +27,6 @@ const bootstrap = async () => {
 			statsCommand,
 			topCommand,
 			startCommand,
-			resetCommand,
 		]);
 		sql.putModels([User]);
 		sql.syncModels();

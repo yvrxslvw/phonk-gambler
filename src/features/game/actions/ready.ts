@@ -4,7 +4,7 @@ import { startEmbed } from '../models';
 import { gameFeature } from './game';
 import { errorFeature } from '../../error';
 
-export const readyFeature = async (interaction: ButtonInteraction, roomId: string) => {
+export const gameReadyFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
 		const room = global.rooms[roomId];
 		const { username } = interaction.user;

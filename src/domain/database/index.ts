@@ -2,7 +2,6 @@ import { Model, Sequelize } from 'sequelize';
 import { blueBright, greenBright, yellowBright } from 'colorette';
 import { MYSQL_DATA } from './data';
 import { getCurrentTime } from '../../helpers';
-import { AppError } from '../../utils';
 
 class Database extends Sequelize {
 	private database: string;

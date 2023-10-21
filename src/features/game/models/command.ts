@@ -1,4 +1,4 @@
-import { Command } from '../../../models';
+import { Command } from '../../../domain';
 
 export const startCommand = new Command('start', 'Начать игру', [
 	{

@@ -1,8 +1,8 @@
 import { Client, Routes } from 'discord.js';
 import { blueBright, greenBright, yellowBright } from 'colorette';
 import { BOT_DATA } from './data';
-import { Command } from '../../models';
 import { getCurrentTime } from '../../helpers';
+import { Command } from '../command';
 
 class Bot extends Client {
 	private APP_TOKEN: string;

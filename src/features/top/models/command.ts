@@ -1,4 +1,4 @@
-import { Command } from '../../../models';
+import { Command } from '../../../domain';
 
 export const topCommand = new Command('top', 'Показать статистику Сервера', [
 	{

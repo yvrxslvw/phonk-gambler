@@ -1,3 +1,3 @@
-import { Command } from '../../../models';
+import { Command } from '../../../domain';
 
 export const statsCommand = new Command('stats', 'Посмотреть свою статистику');

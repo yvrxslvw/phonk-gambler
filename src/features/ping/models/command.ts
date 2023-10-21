@@ -1,3 +1,3 @@
-import { Command } from '../../../models';
+import { Command } from '../../../domain';
 
 export const pingCommand = new Command('ping', 'Пингануть бота');

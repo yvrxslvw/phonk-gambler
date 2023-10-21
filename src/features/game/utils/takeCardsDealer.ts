@@ -9,14 +9,13 @@ export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: st
 	try {
 		const room = global.rooms[roomId];
 		const render = () => renderInteraction(interaction, roomId);
-		const { takeCard, cards } = room.dealer;
 
-		cards[1].toggleHide();
+		room.dealer.cards[1].toggleHide();
 		await render();
 
 		await timer(500);
 		while (room.dealer.score < 17) {
-			takeCard(room, false);
+			room.takeDealerCard(false);
 			await render();
 			await timer(500);
 		}

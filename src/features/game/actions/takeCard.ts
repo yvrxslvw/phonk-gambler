@@ -19,7 +19,7 @@ export const takeCardFeature = async (interaction: ButtonInteraction, roomId: st
 		}
 		await interaction.update({ content: '' });
 
-		player.takeCard(room);
+		room.takePlayerCard(username);
 		if (player.score >= 21) {
 			room.nextTurn();
 			if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);

@@ -3,3 +3,8 @@ export * from './embeds';
 export * from './components';
 export * from './players';
 export * from './buttons';
+export * from './card';
+export * from './deck';
+export * from './dealer';
+export * from './player';
+export * from './room';

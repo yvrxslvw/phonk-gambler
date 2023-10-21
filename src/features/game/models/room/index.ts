@@ -1,3 +1,4 @@
+import { redBright } from 'colorette';
 import { Dealer } from '../dealer';
 import { Deck } from '../deck';
 import { Player } from '../player';
@@ -52,5 +53,25 @@ export class Room {
 	public isPlayerExists = (username: string): boolean => {
 		if (this.players[username] !== undefined) return true;
 		return false;
+	};
+
+	public takePlayerCard = (username: string) => {
+		const player = this.players[username];
+		const card = this.deck.takeCard();
+		if (!card) throw new Error(redBright('Error while taking the card for player.'));
+		player.cards.push(card);
+		player.score += card.getScore(player.score + 11 <= 21);
+		if (player.score === 21) player.status = '**Блэкджэк**';
+		else if (player.score > 21) player.status = '**Поражение**';
+	};
+
+	public takeDealerCard = (hidden: boolean) => {
+		const card = this.deck.takeCard();
+		if (!card) throw new Error(redBright('Error while taking the card for dealer.'));
+		if (hidden) card.toggleHide();
+		this.dealer.cards.push(card);
+		this.dealer.score += card.getScore(this.dealer.score + 11 <= 21);
+		if (this.dealer.score === 21) this.dealer.status = '**Блэкджэк**';
+		else if (this.dealer.score > 21) this.dealer.status = '**Поражение**';
 	};
 }

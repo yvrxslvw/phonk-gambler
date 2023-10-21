@@ -7,7 +7,6 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	const room = global.rooms[roomId];
 	const render = () => renderInteraction(interaction, roomId);
 	const players = Object.values(room.players);
-	const { takeCard } = room.dealer;
 
 	room.status = 'Инициализация';
 	await render();
@@ -17,25 +16,25 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	await render();
 
 	await timer(500);
-	takeCard(room, false);
+	room.takeDealerCard(false);
 	await render();
 
 	await timer(500);
 	await Promise.all(
 		players.map(async player => {
-			player.takeCard(room);
+			room.takePlayerCard(player.user.username);
 			await render();
 		}),
 	);
 
 	await timer(500);
-	takeCard(room, true);
+	room.takeDealerCard(true);
 	await render();
 
 	await timer(500);
 	await Promise.all(
 		players.map(async player => {
-			player.takeCard(room);
+			room.takePlayerCard(player.user.username);
 			await render();
 		}),
 	);

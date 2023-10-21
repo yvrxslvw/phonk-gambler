@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { Player } from '../../../../models';
+import { Player } from '../player';
 
 export const startEmbed = (players: Player[]) => {
 	let description = '**Участники:**\n';

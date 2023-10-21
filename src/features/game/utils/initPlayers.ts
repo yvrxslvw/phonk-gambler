@@ -1,6 +1,5 @@
 import { ChatInputCommandInteraction } from 'discord.js';
-import { Player } from '../../../models';
-import { Players } from '../models';
+import { Player, Players } from '../models';
 
 export const initPlayers = (interaction: ChatInputCommandInteraction): Players => {
 	const players: Players = {};

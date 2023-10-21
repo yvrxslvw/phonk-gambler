@@ -1,6 +1,6 @@
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction } from './renderInteraction';
-import { User } from '../../../models';
+import { GameLog, User } from '../../../models';
 import { AppError } from '../../../utils';
 
 export const getResults = async (interaction: ButtonInteraction, roomId: string) => {
@@ -40,6 +40,21 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 						break;
 					default:
 				}
+
+				const userCards: string[] = [];
+				const dealerCards: string[] = [];
+
+				player.cards.forEach(card => userCards.push(card.getString()));
+				room.dealer.cards.forEach(card => dealerCards.push(card.getString()));
+
+				await GameLog.create({
+					username: player.user.username,
+					userStatus: player.status,
+					userCards: userCards.join(' '),
+					dealerCards: dealerCards.join(' '),
+					userScore: player.score,
+					dealerScore: room.dealer.score,
+				});
 			}),
 		);
 

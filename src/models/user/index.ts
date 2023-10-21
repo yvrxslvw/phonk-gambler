@@ -1,4 +1,10 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import {
+	CreationOptional,
+	DataTypes,
+	InferAttributes,
+	InferCreationAttributes,
+	Model,
+} from 'sequelize';
 import { sql } from '../../domain';
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
@@ -11,6 +17,8 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
 	declare loses: CreationOptional<number>;
 
 	declare blackjacks: CreationOptional<number>;
+
+	declare createdAt: CreationOptional<Date>;
 }
 
 User.init(
@@ -40,6 +48,7 @@ User.init(
 			defaultValue: 0,
 			allowNull: false,
 		},
+		createdAt: DataTypes.DATE,
 	},
 	{ sequelize: sql, updatedAt: false, modelName: 'User' },
 );

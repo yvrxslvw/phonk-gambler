@@ -2,7 +2,7 @@ import './config';
 import './events';
 import { greenBright, yellowBright } from 'colorette';
 import { client, sql } from './domain';
-import { User } from './models';
+import { GameLog, User } from './models';
 import {
 	cardsCommand,
 	helpCommand,
@@ -29,7 +29,7 @@ const bootstrap = async () => {
 			topCommand,
 			startCommand,
 		]);
-		sql.putModels([User]);
+		sql.putModels([User, GameLog]);
 		sql.syncModels();
 		console.log(
 			greenBright(`Application has been started. ${yellowBright(`(${getCurrentTime(runtime)}s)`)}`),

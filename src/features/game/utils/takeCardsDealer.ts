@@ -8,16 +8,16 @@ import { endGame } from './endGame';
 export const takeCardsDealer = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
 		const room = global.rooms[roomId];
-		const render = (edit: boolean) => renderInteraction(interaction, roomId, edit);
+		const render = () => renderInteraction(interaction, roomId);
 		const { takeCard, cards } = room.dealer;
 
 		cards[1].toggleHide();
-		await render(false);
+		await render();
 
 		await timer(500);
 		while (room.dealer.score < 17) {
 			takeCard(room, false);
-			await render(true);
+			await render();
 			await timer(500);
 		}
 

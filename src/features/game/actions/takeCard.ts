@@ -2,7 +2,6 @@ import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
 import { renderInteraction, takeCardsDealer } from '../utils';
 import { errorFeature } from '../../error';
-import { timer } from '../../../helpers';
 
 export const takeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -18,6 +17,7 @@ export const takeCardFeature = async (interaction: ButtonInteraction, roomId: st
 			await errorFeature(interaction, 'Сейчас не Ваша очередь.');
 			return;
 		}
+		await interaction.update({ content: '' });
 
 		player.takeCard(room);
 		if (player.score >= 21) {
@@ -25,7 +25,7 @@ export const takeCardFeature = async (interaction: ButtonInteraction, roomId: st
 			if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);
 			return;
 		}
-		renderInteraction(interaction, roomId, false);
+		renderInteraction(interaction, roomId);
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while taking card.'));

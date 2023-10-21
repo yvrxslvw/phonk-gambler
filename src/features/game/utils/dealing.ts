@@ -5,7 +5,7 @@ import { takeCardsDealer } from './takeCardsDealer';
 
 export const gameDealing = async (interaction: ButtonInteraction, roomId: string) => {
 	const room = global.rooms[roomId];
-	const render = () => renderInteraction(interaction, roomId, true);
+	const render = () => renderInteraction(interaction, roomId);
 	const players = Object.values(room.players);
 	const { takeCard } = room.dealer;
 

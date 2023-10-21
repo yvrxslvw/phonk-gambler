@@ -8,7 +8,7 @@ export const getResults = async (interaction: ButtonInteraction, roomId: string)
 		const room = global.rooms[roomId];
 		const players = Object.values(room.players);
 		const dealerScore = room.dealer.score;
-		const render = () => renderInteraction(interaction, roomId, true);
+		const render = () => renderInteraction(interaction, roomId);
 
 		room.status = 'Игра окончена.';
 		await Promise.all(

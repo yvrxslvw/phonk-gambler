@@ -24,13 +24,14 @@ export const refuseFeature = async (interaction: ButtonInteraction, roomId: stri
 			);
 			return;
 		}
+		await interaction.update({ content: '' });
 
 		room.nextTurn();
 		if (room.isDealerTurn()) {
 			await takeCardsDealer(interaction, roomId);
 			return;
 		}
-		await renderInteraction(interaction, roomId, false);
+		await renderInteraction(interaction, roomId);
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while refuse turn.'));

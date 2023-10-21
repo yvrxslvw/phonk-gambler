@@ -17,6 +17,7 @@ export const insuranceFeature = async (interaction: ButtonInteraction, roomId: s
 			await errorFeature(interaction, 'Сейчас не Ваша очередь.');
 			return;
 		}
+		await interaction.update({ content: '' });
 
 		player.insurance = true;
 		room.nextTurn();

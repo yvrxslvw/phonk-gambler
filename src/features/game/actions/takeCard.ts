@@ -1,6 +1,8 @@
 import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
-import { renderInteraction, checkAccess, takeCardsDealer } from '../utils';
+import { renderInteraction, takeCardsDealer } from '../utils';
+import { errorFeature } from '../../error';
+import { timer } from '../../../helpers';
 
 export const takeCardFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -8,10 +10,19 @@ export const takeCardFeature = async (interaction: ButtonInteraction, roomId: st
 		const { username } = interaction.user;
 		const player = room.players[username];
 
-		if (!checkAccess(interaction, roomId)) return;
+		if (!room.isPlayerExists(username)) {
+			await errorFeature(interaction, 'Это не Ваша комната.');
+			return;
+		}
+		if (!room.isTurningNow(username)) {
+			await errorFeature(interaction, 'Сейчас не Ваша очередь.');
+			return;
+		}
+
 		player.takeCard(room);
 		if (player.score >= 21) {
-			if (!room.nextTurn()) await takeCardsDealer(interaction, roomId);
+			room.nextTurn();
+			if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);
 			return;
 		}
 		renderInteraction(interaction, roomId, false);

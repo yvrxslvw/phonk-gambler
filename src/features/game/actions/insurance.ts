@@ -1,6 +1,7 @@
 import { redBright } from 'colorette';
 import { ButtonInteraction } from 'discord.js';
-import { checkAccess, takeCardsDealer } from '../utils';
+import { takeCardsDealer } from '../utils';
+import { errorFeature } from '../../error';
 
 export const insuranceFeature = async (interaction: ButtonInteraction, roomId: string) => {
 	try {
@@ -8,9 +9,18 @@ export const insuranceFeature = async (interaction: ButtonInteraction, roomId: s
 		const { username } = interaction.user;
 		const player = room.players[username];
 
-		if (!checkAccess(interaction, roomId)) return;
+		if (!room.isPlayerExists(username)) {
+			await errorFeature(interaction, 'Это не Ваша комната.');
+			return;
+		}
+		if (!room.isTurningNow(username)) {
+			await errorFeature(interaction, 'Сейчас не Ваша очередь.');
+			return;
+		}
+
 		player.insurance = true;
-		if (!room.nextTurn()) await takeCardsDealer(interaction, roomId);
+		room.nextTurn();
+		if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);
 	} catch (error) {
 		console.error(error);
 		console.error(redBright('Error while insurance turn.'));

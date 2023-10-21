@@ -24,14 +24,33 @@ export class Room {
 		this.turn = -1;
 	}
 
-	public nextTurn = (): boolean => {
+	public nextTurn = () => {
 		this.turn += 1;
-		if (this.turn + 1 > Object.keys(this.players).length) {
+		if (!Object.keys(this.players)[this.turn]) {
 			this.status = 'Ход Дилера';
-			return false;
+			return;
 		}
-		if (Object.values(this.players)[this.turn].score >= 21) return this.nextTurn();
+		if (Object.values(this.players)[this.turn].score >= 21) {
+			this.nextTurn();
+			return;
+		}
+
 		this.status = `Ход игрока ${Object.values(this.players)[this.turn].user.username}`;
-		return true;
+	};
+
+	public isDealerTurn = (): boolean => {
+		if (!Object.keys(this.players)[this.turn]) return true;
+		return false;
+	};
+
+	public isTurningNow = (username: string): boolean => {
+		const nowTurning = Object.keys(this.players)[this.turn];
+		if (username === nowTurning) return true;
+		return false;
+	};
+
+	public isPlayerExists = (username: string): boolean => {
+		if (this.players[username] !== undefined) return true;
+		return false;
 	};
 }

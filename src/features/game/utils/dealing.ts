@@ -20,9 +20,9 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	takeCard(room, false);
 	await render();
 
+	await timer(500);
 	await Promise.all(
 		players.map(async player => {
-			await timer(500);
 			player.takeCard(room);
 			await render();
 		}),
@@ -32,14 +32,18 @@ export const gameDealing = async (interaction: ButtonInteraction, roomId: string
 	takeCard(room, true);
 	await render();
 
+	await timer(500);
 	await Promise.all(
 		players.map(async player => {
-			await timer(500);
 			player.takeCard(room);
 			await render();
 		}),
 	);
 
-	if (!room.nextTurn()) await takeCardsDealer(interaction, roomId);
+	await timer(250);
+	room.nextTurn();
+
+	await timer(500);
+	if (room.isDealerTurn()) await takeCardsDealer(interaction, roomId);
 	else await render();
 };
